@@ -22,6 +22,8 @@ if [[ ` batctl gw_mode | awk '{print $1}'` = "server" ]]; then
     /etc/init.d/n2n restart
     logger "n2n restarted (no neighbors via n2n)"
   fi
+elif ! test_connectivity internet; then
+	/etc/init.d/n2n stop
 else
   exit 0
 fi
